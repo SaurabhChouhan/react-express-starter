@@ -6,6 +6,8 @@ import logger from 'morgan'
 import mongoose from 'mongoose'
 import indexRouter from './routes/index'
 import usersRouter from './routes/users'
+import config from './config'
+import {getMongoURL} from './utils'
 
 var app = express();
 // view engine setup
@@ -21,8 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+console.log("\n**** USING CONFIGURATIONS ****\n")
+console.log(config.toString())
 
-mongoose.connect('mongodb://localhost/react-express-starter', {useNewUrlParser:true});
+mongoose.connect(getMongoURL(config.get('db.host'), config.get('db.name'), config.get('db.username'), config.get('db.password')), {useNewUrlParser:true, useFindAndModify:false, useCreateIndex:true});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

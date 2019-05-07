@@ -6,8 +6,10 @@
     "start": "nodemon --exec babel-node bin/www"
   },
   "dependencies": {
+    "convict": "^5.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^8.0.0",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "express-async-handler": "^1.1.4",
