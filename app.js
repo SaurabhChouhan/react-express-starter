@@ -6,8 +6,10 @@ import logger from 'morgan'
 import mongoose from 'mongoose'
 import indexRouter from './routes/index'
 import usersRouter from './routes/users'
+import apiRouter from './routes/api'
 import config from './config'
-import {getMongoURL} from './utils'
+import {getMongoURL} from './utils/utils'
+import passport from 'passport'
 
 var app = express();
 // view engine setup
@@ -19,10 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter)
+
+
+require('./utils/passport')
+
 console.log("\n**** USING CONFIGURATIONS ****\n")
 console.log(config.toString())
 
@@ -35,6 +42,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  console.log("error is ", err)
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -9,7 +9,7 @@ var userSchema = new Schema({
     isDeleted: {type: Boolean, default: false}
 });
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, {usernameField:"email"});
 
 const UserModel = mongoose.model("User", userSchema)
 export default UserModel

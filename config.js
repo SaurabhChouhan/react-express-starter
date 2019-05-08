@@ -32,6 +32,14 @@ var config = convict({
         default: "", // Shouldn't set actual password here as this file would be committed on git, use environment specific file in config directory
         sensitive: true
       }
+    },
+    auth:{
+      passportSecret:{
+        doc: "Secret used to create password hash",
+        format: 'String',
+        default: '',
+        sensitive: true
+      }
     }
 });
 // Load environment dependent configuration
