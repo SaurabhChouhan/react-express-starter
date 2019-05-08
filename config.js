@@ -9,7 +9,13 @@ var config = convict({
       format: ["production", "development", "test"],
       default: "development",
       env: "NODE_ENV"
-    },  
+    },
+    port: {
+      doc: "Server port",
+      format:"int",
+      default:8080,
+      env: "PORT"
+    },    
     db: {
       host: {
         doc: "Database host name/IP",

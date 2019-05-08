@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec babel-node bin/www"
+    "start":"concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon --exec babel-node bin/www",
+    "client": "node start-client.js"
   },
   "dependencies": {
     "convict": "^5.0.0",
