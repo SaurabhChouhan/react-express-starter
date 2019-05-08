@@ -5,6 +5,6 @@ import passport from 'passport'
 var router = express.Router({mergeParams: true});
 
 router.use('/', passport.authenticate('jwt', { session: false }))
-router.use('/', userRoutes)
+router.use('/users', userRoutes)
 
 export default router

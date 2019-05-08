@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import mongoose from 'mongoose'
 import indexRouter from './routes/index'
-import usersRouter from './routes/users'
 import apiRouter from './routes/api'
 import config from './config'
 import {getMongoURL} from './utils/utils'
@@ -24,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api', apiRouter)
 
 
